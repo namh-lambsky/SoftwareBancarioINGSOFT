@@ -245,7 +245,7 @@ ConsultarSaldoFondo =Label(consultarSaldo, image=fondoConsultarSaldo)
 ConsultarSaldoFondo.place(x=0,y=0)
 
 
-#botones 
+#botones
 ConsultarSaldoBtImprimir= Button(consultarSaldo, padx=25,border=0, pady=15, bg="#DD5222",command = lambda: c.framesManager(framesList,ImprimirRecibo))
 ConsultarSaldoBtImprimir.place(x=15,y=290)
 

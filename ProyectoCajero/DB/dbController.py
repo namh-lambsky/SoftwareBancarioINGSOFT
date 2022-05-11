@@ -53,12 +53,31 @@ class DAO():
                     return result
                 except Error as ex:
                     print("Error al intentar la conexión: {0}".format(ex))
-    def getInfo(self,id):
+    def getAccountPassword(self,id):
         try:
             cursor=self.bankDB.cursor()
             cursor.execute("SELECT accountPassword FROM accounts WHERE idAccount='{0}'".format(id))
             result=cursor.fetchone()
             return result
+        except Error as ex:
+            print("Error al intentar la conexión: {0}".format(ex))
+
+    def getAccountBalance(self,id):
+        try:
+            cursor=self.bankDB.cursor()
+            cursor.execute("SELECT accountBalance FROM accounts WHERE idAccount='{0}'".format(id))
+            result=cursor.fetchone()
+            return result
+        except Error as ex:
+            print("Error al intentar la conexión: {0}".format(ex))
+
+    def updateAccountBalance(self,idAccount,accountBalance):
+        try:
+            cursor=self.bankDB.cursor()
+            sqlInstruction="UPDATE accounts SET accountBalance='{1}' WHERE idAccount='{0}'"
+            cursor.execute(sqlInstruction.format(idAccount, accountBalance))
+            self.bankDB.commit()
+            print("¡Cuenta actualizada con exito!")
         except Error as ex:
             print("Error al intentar la conexión: {0}".format(ex))
 
