@@ -103,7 +103,7 @@ contraseñaIcon=ImageTk.PhotoImage(resizeImageC)
 
 
 #MenuPrincipal---------------------------------------------------------
-
+#dataList=c.getCardInfo()
 #label
 MenuPrincipalFondo =Label(MenuPrincipal, image=fondo)
 MenuPrincipalFondo.place(x=0,y=0)
@@ -216,6 +216,8 @@ def validate_entryR(text, new_text):
 
 
 
+
+
 #Comando para la validación del entry(que sean >10000 digitos y que sean numeros)
 def validate_entryRetiro(text):
     if int(text) < 2700000 and int(text) %5==0:
@@ -274,7 +276,7 @@ transferenciasOpFondo =Label(transferenciasOp, image=fondoTransferenciasOp)
 transferenciasOpFondo.place(x=0,y=0)
 
 
-#botones 
+#botones
 transferenciasOpBtNumero= Button(transferenciasOp, padx=25,border=0, pady=15, bg="#DD5222",command = lambda: c.framesManager(framesList,transferenciaNumeroDeCuenta))
 transferenciasOpBtNumero.place(x=15,y=270)
 
@@ -289,7 +291,12 @@ transferenciaNumeroDeCuentafondo.place(x=0,y=0)
 transferenciaNumeroDeCuentafondoLb=Label(transferenciaNumeroDeCuenta,image=contraseñaIcon,border=0)
 transferenciaNumeroDeCuentafondoLb.place(x=510,y=200)
 
-#Verificacion 
+#
+
+
+
+
+#Verificacion
 
 def validate_entryN(text, new_text):
     # Primero chequear que el contenido total no exceda los diez caracteres.
@@ -361,6 +368,10 @@ NuevoSaldofondo.place(x=0,y=0)
 
 NuevoSaldoBtIngresar= Button(NuevoSaldo, padx=25,border=0, pady=15, bg="#e61717",command = lambda: c.framesManager(framesList,MenuPrincipal))
 NuevoSaldoBtIngresar.place(x=100,y=345)
+
+
+    
+
 
 
 

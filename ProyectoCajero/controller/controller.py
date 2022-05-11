@@ -49,7 +49,6 @@ class controller():
                     if code.data.decode('utf-8') not in used_codes:
                         cardInfo=code.data.decode('utf-8')
                         cardInfoList=cardInfo.split()
-                        print(cardInfoList)
                         used_codes.append(code.data.decode('utf-8'))
                         time.sleep(5)
                         camera=False
@@ -64,6 +63,11 @@ class controller():
         cap.release()
         cv2.destroyAllWindows()
         return cardInfoList
+
+    #PRUEBASSS
+
+
+
 
     def passwordValidation(self,cardInfoList,passwordGUI,framesList,frametoShow):
         accountId=int(cardInfoList[1])
@@ -98,5 +102,3 @@ class controller():
     def clearTextInput(self,entry,framesList,frametoShow):
         entry.delete("0","end")
         self.framesManager(framesList,frametoShow)
-
-
