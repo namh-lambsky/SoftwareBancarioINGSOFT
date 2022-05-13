@@ -1,6 +1,6 @@
 from tkinter import *
 from PIL import Image, ImageTk
-import menuPrincipal
+import menuPrincipal,ingresoConTarjeta, retirarDinero
 
 class MenuTransaccion:
     def __init__(self,window):
@@ -15,27 +15,46 @@ class MenuTransaccion:
         fondoMenuTransaccion= ImageTk.PhotoImage(resizeImagef)
         #MenuTransaccion--------------------------------------------------------------------------
 
-        MenuTransaccionfondo=Label(self.window, image=fondoMenuTransaccion)
-        MenuTransaccionfondo.image=fondoMenuTransaccion
-        MenuTransaccionfondo.place(x=0,y=0)
+        menuTransaccionfondo=Label(self.window, image=fondoMenuTransaccion)
+        menuTransaccionfondo.image=fondoMenuTransaccion
+        menuTransaccionfondo.place(x=0,y=0)
 
         #botones MenuTransaccion
-        MenuTransaccionBtRetirarDinero= Button(self.window, padx=25, pady=15,border=0, bg="#DD5222")
-        MenuTransaccionBtRetirarDinero.place(x=25,y=160)
+        menuTransaccionBtRetirarDinero= Button(self.window, padx=25, pady=15,border=0, bg="#DD5222")
+        menuTransaccionBtRetirarDinero.place(x=25,y=147)
 
-        MenuTransaccionBtConsultarSaldo= Button(self.window, padx=25, pady=15,border=0, bg="#DD5222")
-        MenuTransaccionBtConsultarSaldo.place(x=25,y=295)
+        menuTransaccionBtConsultarSaldo= Button(self.window, padx=25, pady=15,border=0, bg="#DD5222")
+        menuTransaccionBtConsultarSaldo.place(x=25,y=282)
 
-        MenuTransaccionBtTransferencias= Button(self.window, padx=25, pady=15,border=0, bg="#DD5222")
-        MenuTransaccionBtTransferencias.place(x=1170,y=160)
+        menuTransaccionBtTransferencias= Button(self.window, padx=25, pady=15,border=0, bg="#DD5222")
+        menuTransaccionBtTransferencias.place(x=1170,y=147)
 
+        menuTransaccionBtFinalizar= Button(self.window, padx=25, pady=15,border=0, bg="#DD5222")
+        menuTransaccionBtFinalizar.place(x=25,y=417)
 
+    def go_RetirarDineroMenu(self):
+        win=Toplevel()
+        retirarDinero.MenuRetirarDinero(win)
+        self.window.withdraw()
+        win.deiconify()
 
-        def go_page1(self):
-            win=Toplevel()
-            menuPrincipal.Page1(win)
-            self.window.withdraw()
-            win.deiconify()
+    def go_ConsultaDeSaldo(self):
+        win=Toplevel()
+        menuPrincipal.MenuPrincipal(win)
+        self.window.withdraw()
+        win.deiconify()
+
+    def go_Transferencias(self):
+        win=Toplevel()
+        menuPrincipal.MenuPrincipal(win)
+        self.window.withdraw()
+        win.deiconify()
+
+    def go_MainMenu(self):
+        win=Toplevel()
+        menuPrincipal.MenuPrincipal(win)
+        self.window.withdraw()
+        win.deiconify()
 
 def page():
     window= Tk()

@@ -8,19 +8,10 @@ from pyzbar.pyzbar import decode
 script_dir = os.path.dirname( __file__ )
 controller_dir = os.path.join( script_dir, '..', 'DB' )
 sys.path.append( controller_dir )
-gui_dir = os.path.join( script_dir, '..', 'view' )
-sys.path.append( gui_dir )
 from dbController import DAO
 dao=DAO()
 class controller():
 
-    def validateR(self,entry,text):
-        if int(text) < 2700000 and int(text) %5==0:
-            amount=int(text)
-            entry.delete("0","end")
-            self.withdrawal(amount,)
-        else:
-            print("Su numero ingresado no es correcto intente de nuevo")
 
     def withdrawal(self,amount,idAccount):
         actualAccountBalance=dao.getAccountBalance(idAccount)
@@ -35,6 +26,7 @@ class controller():
 
     def getCardList(self):
         cardInfo=self.getCardInfo()
+        print(cardInfo)
         return cardInfo
 
     def getCardInfo(self):

@@ -1,12 +1,14 @@
 from tkinter import *
 from PIL import Image, ImageTk
-import ingresarTarjeta,ingresoSinTarjeta
+import ingresoSinTarjeta,ingresoConTarjeta,ingresarTarjeta
 
-class Page1:
+class MenuPrincipal:
     def __init__(self,window):
         self.window= window
         self.window.geometry("1250x580")
         self.window.resizable(0,0)
+        self.window.title("Cajero Automatico Bancolombia")
+        self.window.iconbitmap('view/imagenes/LogoBancolombia.ico')
         self.window.rowconfigure(0,weight=1)
         self.window.columnconfigure(0,weight=1)
         #self.window.state("zoomed")
@@ -22,27 +24,28 @@ class Page1:
         MenuPrincipalFondoLb.image=MenuPrincipalFondo
         MenuPrincipalFondoLb.place(x=0,y=0)
         #botones
-        MenuPrincipalBtIngresarTarjeta= Button(self.window, padx=25,border=0, pady=15, bg="#DD5222", command=self.go_page2)
+        MenuPrincipalBtIngresarTarjeta= Button(self.window, padx=25,border=0, pady=15, bg="#DD5222", command=self.go_IngresoTarjeta)
         MenuPrincipalBtIngresarTarjeta.place(x=15,y=435)
 
-        MenuPrincipalBtIngresarSinTarjeta= Button(self.window, padx=25,border=0, pady=15, bg="#DD5222",command=self.go_page4)
+        MenuPrincipalBtIngresarSinTarjeta= Button(self.window, padx=25,border=0, pady=15, bg="#DD5222",command=self.go_IngresoTarjeta)
         MenuPrincipalBtIngresarSinTarjeta.place(x=1175,y=435)
 
-    def go_page2(self):
-        win=Toplevel()
-        ingresarTarjeta.Page2(win)
-        self.window.withdraw()
+    def go_IngresarTarjeta(self):
+        win=Tk()
+        ingresarTarjeta.IngresarTarjeta(win)
+        #self.window.withdraw()
+        self.window.destroy()
         win.deiconify()
 
-    def go_page4(self):
+    def go_IngresoTarjeta(self):
         win=Toplevel()
-        ingresoSinTarjeta.Page4(win)
+        ingresoSinTarjeta.MenuAccesoSinTarjeta(win)
         self.window.withdraw()
         win.deiconify()
 
 def page():
     window= Tk()
-    Page1(window)
+    MenuPrincipal(window)
     window.mainloop()
 
 if __name__ == "__main__":

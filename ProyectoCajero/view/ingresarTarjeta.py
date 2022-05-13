@@ -1,16 +1,14 @@
 from tkinter import *
 from PIL import Image, ImageTk
-from argparse import ZERO_OR_MORE
-from ctypes import resize
-from platform import win32_edition
 import menuPrincipal, ingresoTarjetaContraseña
 
 
-class Page2:
+class IngresarTarjeta:
     def __init__(self,window):
         self.window= window
         self.window.geometry("1250x580")
         self.window.resizable(0,0)
+        self.window.iconbitmap('view/imagenes/LogoBancolombia.ico')
         self.window.rowconfigure(0,weight=1)
         self.window.columnconfigure(0,weight=1)
         #self.window.state("zoomed")
@@ -63,16 +61,16 @@ class Page2:
         self.window.withdraw()
         win.deiconify()
 
-    def go_page1(self):
+    def go_MainMenu(self):
         win=Toplevel()
-        menuPrincipal.Page1(win)
+        menuPrincipal.MenuPrincipal(win)
         self.window.withdraw()
         win.deiconify()
 
 
 def page():
     window= Tk()
-    Page2(window)
+    IngresarTarjeta(window)
     window.mainloop()
 
 
