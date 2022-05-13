@@ -1,8 +1,6 @@
-from cProfile import label
 from tkinter import *
 from PIL import Image, ImageTk
-import page2
-
+import ingresarTarjeta,ingresoSinTarjeta
 
 class Page1:
     def __init__(self,window):
@@ -27,21 +25,25 @@ class Page1:
         MenuPrincipalBtIngresarTarjeta= Button(self.window, padx=25,border=0, pady=15, bg="#DD5222", command=self.go_page2)
         MenuPrincipalBtIngresarTarjeta.place(x=15,y=435)
 
-        MenuPrincipalBtIngresarSinTarjeta= Button(self.window, padx=25,border=0, pady=15, bg="#DD5222")
+        MenuPrincipalBtIngresarSinTarjeta= Button(self.window, padx=25,border=0, pady=15, bg="#DD5222",command=self.go_page4)
         MenuPrincipalBtIngresarSinTarjeta.place(x=1175,y=435)
 
     def go_page2(self):
         win=Toplevel()
-        page2.Page2(win)
+        ingresarTarjeta.Page2(win)
         self.window.withdraw()
-        #win.deiconify()
+        win.deiconify()
+
+    def go_page4(self):
+        win=Toplevel()
+        ingresoSinTarjeta.Page4(win)
+        self.window.withdraw()
+        win.deiconify()
 
 def page():
     window= Tk()
     Page1(window)
     window.mainloop()
-
-
 
 if __name__ == "__main__":
     page()

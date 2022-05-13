@@ -1,0 +1,1 @@
+"""command = lambda: c.framesManager(framesList,MenuPrincipal)""""""command = lambda: c.getCardInfo(framesList,IngresoTarjetaContraseña)"""

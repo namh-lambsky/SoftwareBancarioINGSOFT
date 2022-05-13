@@ -33,6 +33,10 @@ class controller():
         else:
             print("error! la cantidad a retirar es mayor al balance en la cuenta")
 
+    def getCardList(self):
+        cardInfo=self.getCardInfo()
+        return cardInfo
+
     def getCardInfo(self):
         cap=cv2.VideoCapture(0)
         cap.set(3,640)
