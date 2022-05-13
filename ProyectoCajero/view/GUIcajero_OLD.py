@@ -42,7 +42,7 @@ fondo= Image.open("VIEW/imagenes/Pantallaprincipal.png")
 resizeImagef=fondo.resize((1250,580))
 fondo= ImageTk.PhotoImage(resizeImagef)
 
-fondoingresarTarjeta= Image.open("VIEW/imagenes/2.png")
+fondoingresarTarjeta= Image.open("VIEW/imagenes/IngreseCodigoTarjeta.png")
 resizeImagef=fondoingresarTarjeta.resize((1250,580))
 fondoingresarTarjeta= ImageTk.PhotoImage(resizeImagef)
 
@@ -50,9 +50,9 @@ fondoIngresarSinTarjeta= Image.open("VIEW/imagenes/3.png")
 resizeImagef=fondoIngresarSinTarjeta.resize((1250,580))
 fondoIngresarSinTarjeta= ImageTk.PhotoImage(resizeImagef)
 
-
-
-
+fondoIngresarIdTarjeta= Image.open("VIEW/imagenes/IngreseCodigoTarjeta.png")
+resizeImagef=fondoIngresarIdTarjeta.resize((1250,580))
+fondoIngresarIdTarjeta= ImageTk.PhotoImage(resizeImagef)
 
 fondoMenuTransaccion= Image.open("VIEW/imagenes/MenuTransaccion.png")
 resizeImagef=fondoMenuTransaccion.resize((1250,580))
@@ -114,21 +114,37 @@ MenuPrincipalFondo.place(x=0,y=0)
 
 
 #botones
-MenuPrincipalBtIngresarTarjeta= Button(MenuPrincipal, padx=25,border=0, pady=15, bg="#DD5222",command = lambda: c.framesManager(framesList,IngresoTarjetaContraseña))
+MenuPrincipalBtIngresarTarjeta= Button(MenuPrincipal, padx=25,border=0, pady=15, bg="#DD5222",command = lambda: c.framesManager(framesList,ingresarTarjeta))
 MenuPrincipalBtIngresarTarjeta.place(x=15,y=435)
 
 MenuPrincipalBtIngresarSinTarjeta= Button(MenuPrincipal, padx=25,border=0, pady=15, bg="#DD5222",command = lambda: c.framesManager(framesList,ingresarSinTarjeta))
 MenuPrincipalBtIngresarSinTarjeta.place(x=1175,y=435)
 
+
+#Comando para la validación del entry(que sean 4 digitos y que sean numeros)
+def validate_entryC(text, new_text):
+    # Primero chequear que el contenido total no exceda los diez caracteres.
+    if len(new_text) > 10:
+        return False
+    # Luego, si la validación anterior no falló, chequear que el texto solo
+    # contenga números.
+    return text.isdecimal()
+
+#Comando para eliminar espacio de texto
+
+
 #MenuingresarTarjeta---------------------------------------------------------
 ingresarTarjetafondo=Label(ingresarTarjeta, image=fondoingresarTarjeta)
 ingresarTarjetafondo.place(x=0,y=0)
 
+IngresoTarjetaCodigoTx = Entry(ingresarTarjeta, width=6,font=("Helvetica",24),border=0)
+IngresoTarjetaCodigoTx.place(x=630,y=204)
+IngresoTarjetaCodigoTx.focus_set()
+IngresoTarjetaCodigoTx.config(validate='key',validatecommand=(ventana.register(validate_entryC), "%S", "%P"))
+
 #botones ingresarTarjeta
 ingresarTarjetaBtIngresar= Button(ingresarTarjeta, padx=25,border=0, pady=15, bg="#7ed957",command = lambda: c.getCardInfo(framesList,IngresoTarjetaContraseña))
 ingresarTarjetaBtIngresar.place(x=100,y=345)
-
-
 
 ingresarTarjetaBt2Ingresar= Button(ingresarTarjeta, padx=25,border=0, pady=15, bg="#e61717",command = lambda: c.framesManager(framesList,MenuPrincipal))
 ingresarTarjetaBt2Ingresar.place(x=100,y=445)
@@ -152,7 +168,7 @@ def validate_entry(text, new_text):
 
 #Comando para eliminar espacio de texto
 
-cardList=c.getCardInfo()
+
 
 #Entry para el ingreso de la contraseña
 IngresoTarjetaContraseñaTx = Entry(IngresoTarjetaContraseña, show="*",width=6,font=("Helvetica",24),border=0)
@@ -161,7 +177,7 @@ IngresoTarjetaContraseñaTx.focus_set()
 IngresoTarjetaContraseñaTx.config(validate='key',validatecommand=(ventana.register(validate_entry), "%S", "%P"))
 
 #botones IngresoTarjeta
-IngresoTarjetaBtIngresar= Button(IngresoTarjetaContraseña, padx=25,border=0, pady=15, bg="#7ed957",command = lambda: c.passwordValidation(cardList,IngresoTarjetaContraseñaTx.get(),framesList,MenuTransaccion))
+IngresoTarjetaBtIngresar= Button(IngresoTarjetaContraseña, padx=25,border=0, pady=15, bg="#7ed957",command = lambda:)
 IngresoTarjetaBtIngresar.place(x=100,y=345)
 
 IngresoTarjetaBtFinalizar= Button(IngresoTarjetaContraseña, padx=25,border=0, pady=15, bg="#e61717",command = lambda: c.clearTextInput(IngresoTarjetaContraseñaTx,framesList,MenuPrincipal))
