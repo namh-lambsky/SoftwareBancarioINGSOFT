@@ -8,21 +8,17 @@ from pyzbar.pyzbar import decode
 script_dir = os.path.dirname( __file__ )
 controller_dir = os.path.join( script_dir, '..', 'DB' )
 sys.path.append( controller_dir )
+gui_dir = os.path.join( script_dir, '..', 'view' )
+sys.path.append( gui_dir )
 from dbController import DAO
 dao=DAO()
 class controller():
-    #Funcion encargada de mostrar el frame requerido sin embargo, requiere que se carguen todos los frames mediante un for
-    def framesManager(self,framesList,frametoShow):
-        for frame in framesList:
-            frame.grid(row=0,column=0,sticky="nsew")
-        frametoShow.tkraise()
 
-    def validateR(self,entry,text,framesList,frametoShow):
+    def validateR(self,entry,text):
         if int(text) < 2700000 and int(text) %5==0:
             amount=int(text)
             entry.delete("0","end")
             self.withdrawal(amount,)
-            self.framesManager(framesList,frametoShow)
         else:
             print("Su numero ingresado no es correcto intente de nuevo")
 
@@ -52,24 +48,19 @@ class controller():
                         used_codes.append(code.data.decode('utf-8'))
                         time.sleep(5)
                         camera=False
-                            #self.framesManager(framesList,frametoShow)
                     elif code.data.decode('utf-8') in used_codes:
                         messagebox.showerror(message="La camara ya esta activada",title="Error!")
                         time.sleep(5)
                     else:
                         pass
-                cv2.imshow("Test",frame)
+                cv2.imshow("IngresoTarjeta",frame)
                 cv2.waitKey(1)
         cap.release()
         cv2.destroyAllWindows()
         return cardInfoList
 
-    #PRUEBASSS
-
-
-
-
-    def passwordValidation(self,cardInfoList,passwordGUI,framesList,frametoShow):
+    def passwordValidation(self,cardInfoList,passwordGUI):
+        userCanEnter=False
         accountId=int(cardInfoList[1])
         cards=dao.getTableInfo(3)
         passEntryTries=0
@@ -77,15 +68,20 @@ class controller():
             if card[1]==accountId:
                 codeExists=True
                 break
-        if codeExists:
-            passwordScheme=dao.getAccountPassword(accountId)
-            passwordScheme=int(passwordScheme[0])
-            if passwordScheme==int(passwordGUI):
-                passEntryTries=0
-                self.framesManager(framesList,frametoShow)
-            else:
-                messagebox.showerror(message="contraseña errada")
-                passEntryTries+=1
+        if passEntryTries!=3:
+            if codeExists:
+                passwordScheme=dao.getAccountPassword(accountId)
+                passwordScheme=int(passwordScheme[0])
+                if passwordScheme==int(passwordGUI):
+                    passEntryTries=0
+                    userCanEnter=True
+                else:
+                    messagebox.showerror(message="contraseña errada")
+                    passEntryTries+=1
+        else:
+            messagebox.showerror(message="Tarjeta Bloqueada")
+            userCanEnter=False
+        return userCanEnter
 
     def entryPasswordValidation(self,entry,framesList,frametoShow):
         try:

@@ -50,6 +50,10 @@ fondoIngresarSinTarjeta= Image.open("VIEW/imagenes/3.png")
 resizeImagef=fondoIngresarSinTarjeta.resize((1250,580))
 fondoIngresarSinTarjeta= ImageTk.PhotoImage(resizeImagef)
 
+
+
+
+
 fondoMenuTransaccion= Image.open("VIEW/imagenes/MenuTransaccion.png")
 resizeImagef=fondoMenuTransaccion.resize((1250,580))
 fondoMenuTransaccion= ImageTk.PhotoImage(resizeImagef)
@@ -262,7 +266,7 @@ transferenciasFondo =Label(transferencias, image=fondoTransferencias)
 transferenciasFondo.place(x=0,y=0)
 
 
-#botones 
+#botones
 transferenciasBtAhorro= Button(transferencias, padx=25,border=0, pady=15, bg="#DD5222",command = lambda: c.framesManager(framesList,transferenciasOp))
 transferenciasBtAhorro.place(x=15,y=270)
 
