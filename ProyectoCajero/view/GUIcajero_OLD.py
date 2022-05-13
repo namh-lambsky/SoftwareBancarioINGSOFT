@@ -152,7 +152,7 @@ def validate_entry(text, new_text):
 
 #Comando para eliminar espacio de texto
 
-
+cardList=c.getCardInfo()
 
 #Entry para el ingreso de la contraseña
 IngresoTarjetaContraseñaTx = Entry(IngresoTarjetaContraseña, show="*",width=6,font=("Helvetica",24),border=0)
@@ -161,7 +161,7 @@ IngresoTarjetaContraseñaTx.focus_set()
 IngresoTarjetaContraseñaTx.config(validate='key',validatecommand=(ventana.register(validate_entry), "%S", "%P"))
 
 #botones IngresoTarjeta
-IngresoTarjetaBtIngresar= Button(IngresoTarjetaContraseña, padx=25,border=0, pady=15, bg="#7ed957",command = lambda: c.passwordValidation(c.getCardInfo(),IngresoTarjetaContraseñaTx.get(),framesList,MenuTransaccion))
+IngresoTarjetaBtIngresar= Button(IngresoTarjetaContraseña, padx=25,border=0, pady=15, bg="#7ed957",command = lambda: c.passwordValidation(cardList,IngresoTarjetaContraseñaTx.get(),framesList,MenuTransaccion))
 IngresoTarjetaBtIngresar.place(x=100,y=345)
 
 IngresoTarjetaBtFinalizar= Button(IngresoTarjetaContraseña, padx=25,border=0, pady=15, bg="#e61717",command = lambda: c.clearTextInput(IngresoTarjetaContraseñaTx,framesList,MenuPrincipal))
